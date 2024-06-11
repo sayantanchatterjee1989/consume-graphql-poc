@@ -1,29 +1,27 @@
 package com.graphql.entity;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "m_company_product_group_mpg")
-public class MCmpProdGrpMpg {
+@Table(name = "m_company")
+public class CompanyMaster {
 
 	@Id
 	@Column(name = "id_pk")
 	Long id;
 
-	@ManyToOne
-	@JoinColumn(name = "company_id", nullable = false)
-	MCompany companyId;
+	@Column(name = "company_code")
+	String companyCode;
 
-	@ManyToOne
-	@JoinColumn(name = "product_group_Id", nullable = false)
-	MProductGroup productGroupId;
+	@Column(name = "company_name")
+	String companyName;
 
 	@Column(name = "status")
 	int status;
@@ -34,6 +32,9 @@ public class MCmpProdGrpMpg {
 	@Column(name = "created_dt")
 	LocalDateTime createdDate;
 
+	@OneToMany(mappedBy = "companyId")
+	private Set<CompanyProdGroupMpg> companyProdGroupMpg;
+
 	public Long getId() {
 		return id;
 	}
@@ -42,20 +43,20 @@ public class MCmpProdGrpMpg {
 		this.id = id;
 	}
 
-	public MCompany getCompanyId() {
-		return companyId;
+	public String getCompanyCode() {
+		return companyCode;
 	}
 
-	public void setCompanyId(MCompany companyId) {
-		this.companyId = companyId;
+	public void setCompanyCode(String companyCode) {
+		this.companyCode = companyCode;
 	}
 
-	public MProductGroup getProductGroupId() {
-		return productGroupId;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setProductGroupId(MProductGroup productGroupId) {
-		this.productGroupId = productGroupId;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
 	public int getStatus() {
@@ -80,6 +81,14 @@ public class MCmpProdGrpMpg {
 
 	public void setCreatedDate(LocalDateTime createdDate) {
 		this.createdDate = createdDate;
+	}
+
+	public Set<CompanyProdGroupMpg> getmCmpProdGrpMpg() {
+		return companyProdGroupMpg;
+	}
+
+	public void setmCmpProdGrpMpg(Set<CompanyProdGroupMpg> companyProdGroupMpg) {
+		this.companyProdGroupMpg = companyProdGroupMpg;
 	}
 
 }

@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "m_application")
-public class MApplication {
+public class ApplicationMaster {
 
 	@Id
 	@Column(name = "id_pk")

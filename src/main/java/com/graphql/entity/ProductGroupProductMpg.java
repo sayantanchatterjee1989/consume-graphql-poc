@@ -10,20 +10,20 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "m_product_application_mpg")
-public class MProdAppMpg {
+@Table(name = "m_pg_product_mpg")
+public class ProductGroupProductMpg {
 
 	@Id
 	@Column(name = "id_pk")
 	Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "application_id", nullable = false)
-	MApplication applicationId;
+	@JoinColumn(name = "product_group_id", nullable = false)
+	ProductGroupMaster productGroupId;
 
 	@ManyToOne
 	@JoinColumn(name = "product_id", nullable = false)
-	MProduct productId;
+	ProductMaster productId;
 
 	@Column(name = "status")
 	int status;
@@ -42,19 +42,19 @@ public class MProdAppMpg {
 		this.id = id;
 	}
 
-	public MApplication getApplicationId() {
-		return applicationId;
+	public ProductGroupMaster getProductGroupId() {
+		return productGroupId;
 	}
 
-	public void setApplicationId(MApplication applicationId) {
-		this.applicationId = applicationId;
+	public void setProductGroupId(ProductGroupMaster productGroupId) {
+		this.productGroupId = productGroupId;
 	}
 
-	public MProduct getProductId() {
+	public ProductMaster getProductId() {
 		return productId;
 	}
 
-	public void setProductId(MProduct productId) {
+	public void setProductId(ProductMaster productId) {
 		this.productId = productId;
 	}
 

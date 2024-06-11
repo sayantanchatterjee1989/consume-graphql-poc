@@ -10,18 +10,18 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "m_product")
-public class MProduct {
+@Table(name = "m_product_group")
+public class ProductGroupMaster {
 
 	@Id
 	@Column(name = "id_pk")
 	Long id;
 
-	@Column(name = "product_code")
-	String productCode;
+	@Column(name = "product_group_code")
+	String productGroupCode;
 
-	@Column(name = "product_name")
-	String productName;
+	@Column(name = "product_group_name")
+	String productGroupName;
 
 	@Column(name = "status")
 	int status;
@@ -32,8 +32,8 @@ public class MProduct {
 	@Column(name = "created_dt")
 	LocalDateTime createdDate;
 
-	@OneToMany(mappedBy = "productId")
-	private Set<MProdAppMpg> mProdAppMpg;
+	@OneToMany(mappedBy = "productGroupId")
+	private Set<ProductGroupProductMpg> productGroupProductMpg;
 
 	public Long getId() {
 		return id;
@@ -43,20 +43,20 @@ public class MProduct {
 		this.id = id;
 	}
 
-	public String getProductCode() {
-		return productCode;
+	public String getProductGroupCode() {
+		return productGroupCode;
 	}
 
-	public void setProductCode(String productCode) {
-		this.productCode = productCode;
+	public void setProductGroupCode(String productGroupCode) {
+		this.productGroupCode = productGroupCode;
 	}
 
-	public String getProductName() {
-		return productName;
+	public String getProductGroupName() {
+		return productGroupName;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setProductGroupName(String productGroupName) {
+		this.productGroupName = productGroupName;
 	}
 
 	public int getStatus() {
@@ -83,12 +83,12 @@ public class MProduct {
 		this.createdDate = createdDate;
 	}
 
-	public Set<MProdAppMpg> getmProdAppMpg() {
-		return mProdAppMpg;
+	public Set<ProductGroupProductMpg> getmProdGrpProdMpg() {
+		return productGroupProductMpg;
 	}
 
-	public void setmProdAppMpg(Set<MProdAppMpg> mProdAppMpg) {
-		this.mProdAppMpg = mProdAppMpg;
+	public void setmProdGrpProdMpg(Set<ProductGroupProductMpg> productGroupProductMpg) {
+		this.productGroupProductMpg = productGroupProductMpg;
 	}
 
 }

@@ -10,20 +10,20 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "m_pg_product_mpg")
-public class MProdGrpProdMpg {
+@Table(name = "m_company_product_group_mpg")
+public class CompanyProdGroupMpg {
 
 	@Id
 	@Column(name = "id_pk")
 	Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "product_group_id", nullable = false)
-	MProductGroup productGroupId;
+	@JoinColumn(name = "company_id", nullable = false)
+	CompanyMaster companyId;
 
 	@ManyToOne
-	@JoinColumn(name = "product_id", nullable = false)
-	MProduct productId;
+	@JoinColumn(name = "product_group_Id", nullable = false)
+	ProductGroupMaster productGroupId;
 
 	@Column(name = "status")
 	int status;
@@ -42,20 +42,20 @@ public class MProdGrpProdMpg {
 		this.id = id;
 	}
 
-	public MProductGroup getProductGroupId() {
+	public CompanyMaster getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(CompanyMaster companyId) {
+		this.companyId = companyId;
+	}
+
+	public ProductGroupMaster getProductGroupId() {
 		return productGroupId;
 	}
 
-	public void setProductGroupId(MProductGroup productGroupId) {
+	public void setProductGroupId(ProductGroupMaster productGroupId) {
 		this.productGroupId = productGroupId;
-	}
-
-	public MProduct getProductId() {
-		return productId;
-	}
-
-	public void setProductId(MProduct productId) {
-		this.productId = productId;
 	}
 
 	public int getStatus() {

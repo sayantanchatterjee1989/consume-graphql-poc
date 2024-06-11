@@ -10,18 +10,18 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "m_company")
-public class MCompany {
+@Table(name = "m_product")
+public class ProductMaster {
 
 	@Id
 	@Column(name = "id_pk")
 	Long id;
 
-	@Column(name = "company_code")
-	String companyCode;
+	@Column(name = "product_code")
+	String productCode;
 
-	@Column(name = "company_name")
-	String companyName;
+	@Column(name = "product_name")
+	String productName;
 
 	@Column(name = "status")
 	int status;
@@ -32,8 +32,8 @@ public class MCompany {
 	@Column(name = "created_dt")
 	LocalDateTime createdDate;
 
-	@OneToMany(mappedBy = "companyId")
-	private Set<MCmpProdGrpMpg> mCmpProdGrpMpg;
+	@OneToMany(mappedBy = "productId")
+	private Set<ProductApplicationMpg> productApplicationMpg;
 
 	public Long getId() {
 		return id;
@@ -43,20 +43,20 @@ public class MCompany {
 		this.id = id;
 	}
 
-	public String getCompanyCode() {
-		return companyCode;
+	public String getProductCode() {
+		return productCode;
 	}
 
-	public void setCompanyCode(String companyCode) {
-		this.companyCode = companyCode;
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
 	}
 
-	public String getCompanyName() {
-		return companyName;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public int getStatus() {
@@ -83,12 +83,12 @@ public class MCompany {
 		this.createdDate = createdDate;
 	}
 
-	public Set<MCmpProdGrpMpg> getmCmpProdGrpMpg() {
-		return mCmpProdGrpMpg;
+	public Set<ProductApplicationMpg> getmProdAppMpg() {
+		return productApplicationMpg;
 	}
 
-	public void setmCmpProdGrpMpg(Set<MCmpProdGrpMpg> mCmpProdGrpMpg) {
-		this.mCmpProdGrpMpg = mCmpProdGrpMpg;
+	public void setmProdAppMpg(Set<ProductApplicationMpg> productApplicationMpg) {
+		this.productApplicationMpg = productApplicationMpg;
 	}
 
 }

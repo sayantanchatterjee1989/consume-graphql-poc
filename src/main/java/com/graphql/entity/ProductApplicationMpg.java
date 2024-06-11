@@ -1,27 +1,29 @@
 package com.graphql.entity;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "m_product_group")
-public class MProductGroup {
+@Table(name = "m_product_application_mpg")
+public class ProductApplicationMpg {
 
 	@Id
 	@Column(name = "id_pk")
 	Long id;
 
-	@Column(name = "product_group_code")
-	String productGroupCode;
+	@ManyToOne
+	@JoinColumn(name = "application_id", nullable = false)
+	ApplicationMaster applicationId;
 
-	@Column(name = "product_group_name")
-	String productGroupName;
+	@ManyToOne
+	@JoinColumn(name = "product_id", nullable = false)
+	ProductMaster productId;
 
 	@Column(name = "status")
 	int status;
@@ -32,9 +34,6 @@ public class MProductGroup {
 	@Column(name = "created_dt")
 	LocalDateTime createdDate;
 
-	@OneToMany(mappedBy = "productGroupId")
-	private Set<MProdGrpProdMpg> mProdGrpProdMpg;
-
 	public Long getId() {
 		return id;
 	}
@@ -43,20 +42,20 @@ public class MProductGroup {
 		this.id = id;
 	}
 
-	public String getProductGroupCode() {
-		return productGroupCode;
+	public ApplicationMaster getApplicationId() {
+		return applicationId;
 	}
 
-	public void setProductGroupCode(String productGroupCode) {
-		this.productGroupCode = productGroupCode;
+	public void setApplicationId(ApplicationMaster applicationId) {
+		this.applicationId = applicationId;
 	}
 
-	public String getProductGroupName() {
-		return productGroupName;
+	public ProductMaster getProductId() {
+		return productId;
 	}
 
-	public void setProductGroupName(String productGroupName) {
-		this.productGroupName = productGroupName;
+	public void setProductId(ProductMaster productId) {
+		this.productId = productId;
 	}
 
 	public int getStatus() {
@@ -81,14 +80,6 @@ public class MProductGroup {
 
 	public void setCreatedDate(LocalDateTime createdDate) {
 		this.createdDate = createdDate;
-	}
-
-	public Set<MProdGrpProdMpg> getmProdGrpProdMpg() {
-		return mProdGrpProdMpg;
-	}
-
-	public void setmProdGrpProdMpg(Set<MProdGrpProdMpg> mProdGrpProdMpg) {
-		this.mProdGrpProdMpg = mProdGrpProdMpg;
 	}
 
 }

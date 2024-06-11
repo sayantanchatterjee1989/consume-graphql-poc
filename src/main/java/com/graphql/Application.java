@@ -6,8 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.graphql.entity.MApplication;
-import com.graphql.service.ProductGroupService;
+import com.graphql.entity.ApplicationMaster;
+import com.graphql.service.ProductGroupServiceImpl;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "com.graphql")
