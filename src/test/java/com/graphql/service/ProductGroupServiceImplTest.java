@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.graphql.entity.ApplicationMaster;
 import com.graphql.entity.CompanyMaster;
 import com.graphql.entity.CompanyProdGroupMpg;
@@ -24,8 +26,10 @@ import com.graphql.entity.ProductApplicationMpg;
 import com.graphql.entity.ProductGroupMaster;
 import com.graphql.entity.ProductGroupProductMpg;
 import com.graphql.entity.ProductMaster;
+import com.graphql.entity.RedisEntity;
 import com.graphql.model.PullRequestDetails;
 import com.graphql.repository.CompanyMasterRepository;
+import com.graphql.repository.RedisEntityRepository;
 import com.graphql.utility.GitUtility;
 
 @ExtendWith(MockitoExtension.class)
@@ -38,10 +42,13 @@ public class ProductGroupServiceImplTest {
 	GitUtility gitUtility;
 
 	@Mock
+	RedisEntityRepository redisEntityRepository;
+
+	@Mock
 	private CompanyMasterRepository companyMasterRepository;
 
 	@Test
-	public void fetchPullRequestDetailsTest() {
+	public void fetchPullRequestDetailsTest() throws JsonProcessingException {
 
 		PullRequestDetails response = productGroupService.fetchPullRequestDetails();
 		assertThat(response.getCompanyDetails().size(), equalTo(1));
@@ -124,9 +131,12 @@ public class ProductGroupServiceImplTest {
 
 		List<CompanyMaster> companyMasterList = new ArrayList<>();
 		companyMasterList.add(companyMaster);
+		
+		Optional<RedisEntity> redisEntity = Optional.empty();
 
 		Mockito.when(companyMasterRepository.findAll()).thenReturn(companyMasterList);
 		Mockito.when(gitUtility.fetchPullRequestDetailsThroughWebClient("sayantanchatterjee1989", "TollManagement"))
 				.thenReturn(1);
+		Mockito.when(redisEntityRepository.findById("getPullRequestDetails")).thenReturn(redisEntity);
 	}
 }

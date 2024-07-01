@@ -3,6 +3,7 @@ package com.graphql.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.graphql.model.PullRequestDetails;
 import com.graphql.service.ProductGroupService;
 
@@ -13,7 +14,7 @@ public class ProductGroupApiController implements ProductGroupApi {
 	ProductGroupService productGroupService;
 
 	@Override
-	public PullRequestDetails getPullRequestDetails() {
+	public PullRequestDetails getPullRequestDetails() throws JsonProcessingException {
 		return productGroupService.fetchPullRequestDetails();
 	}
 
